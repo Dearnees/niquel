@@ -1,0 +1,6 @@
+{
+  "appId": "com.niquel.app",
+  "appName": "Niquel",
+  "webDir": "www",
+  "android": { "backgroundColor": "#faf8f4" }
+}

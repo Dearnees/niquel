@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Níquel en alimentos</title>
+<style>
+:root{--bg:#faf8f4;--fg:#222;--mut:#6b6b6b;--card:#fff;--bd:#e3ded4;--ac:#2f6f5e;--lo:#2e7d32;--me:#b26a00;--hi:#c62828;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17191a;--fg:#ececec;--mut:#9a9a9a;--card:#222527;--bd:#363a3d;--ac:#6fc2aa;--lo:#7bd17f;--me:#f0b24a;--hi:#ff8a80}}
+:root[data-theme="dark"]{--bg:#17191a;--fg:#ececec;--mut:#9a9a9a;--card:#222527;--bd:#363a3d;--ac:#6fc2aa;--lo:#7bd17f;--me:#f0b24a;--hi:#ff8a80}
+*{box-sizing:border-box}html,body{margin:0}body{background:var(--bg);color:var(--fg);font:16px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:1.4rem;margin:.2em 0}@media(max-width:480px){body{padding:12px}.big{font-size:1.3rem}.card{padding:10px}.row>button{flex:1 1 100%}.g{width:84px}h1{font-size:1.25rem}}h2{font-size:1.05rem;margin:1.2em 0 .5em}
+.note{color:var(--mut);font-size:.85rem}
+input,select{font:inherit;font-size:16px;color:var(--fg);background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:10px 12px}
+#q{width:100%;font-size:16px;}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;margin:8px 0}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.big{font-size:1.5rem;font-weight:700}.chip{font-size:.75rem;padding:2px 8px;border-radius:99px;border:1px solid currentColor}
+.Bajo{color:var(--lo)}.Medio{color:var(--me)}.Alto{color:var(--hi)}
+button{font:inherit;border:0;border-radius:10px;padding:10px 16px;min-height:44px;background:var(--ac);color:var(--bg);cursor:pointer;-webkit-tap-highlight-color:transparent}
+button.x{background:none;color:var(--mut);padding:4px 8px}
+.g{width:90px}#cats{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;margin:10px -16px;padding:0 16px 6px;scrollbar-width:none}#cats::-webkit-scrollbar{display:none}#cats button{flex:0 0 auto;white-space:nowrap;min-height:38px}#cats button{background:var(--card);color:var(--fg);border:1px solid var(--bd);padding:5px 12px;font-size:.9rem}#cats button.on{background:var(--ac);color:var(--bg)}.bar{height:12px;background:var(--bd);border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ac)}
+input[type=number]{-moz-appearance:textfield;appearance:textfield}input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+#res .act{flex-wrap:nowrap;margin-top:8px}#res .act>button{flex:0 0 auto}.calc{display:flex;align-items:center;gap:8px}
+#bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);margin:0 -16px;padding:10px 16px 0}#bar #cats{margin:10px -16px 0}@media(max-width:480px){#bar{margin:0 -12px;padding:10px 12px 0}#bar #cats{margin:10px -12px 0;padding:0 12px 6px}}body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+#clr{flex:0 0 auto;margin-left:auto}#log .row{flex-wrap:nowrap}#log .row>span:first-child{flex:1;min-width:0}#log .row>span:last-child{white-space:nowrap;display:flex;align-items:center}
+#form{display:flex;flex-direction:column;gap:8px}#form[hidden]{display:none}#form input,#form select{width:100%}#form label{flex:1 1 90px;min-width:0;display:block}#tools{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}#tools button{background:var(--card);color:var(--fg);border:1px solid var(--bd);flex:1 1 auto}.hd .rm{background:none;color:var(--hi);border:1px solid var(--hi);min-height:32px;padding:2px 10px;margin-left:8px;font-size:.85rem}#cog{font-size:1.5rem;padding:4px 10px;line-height:1;flex:0 0 auto}#cfg{display:flex;flex-direction:column;gap:8px}#cfg[hidden],#rl[hidden],#dmn[hidden]{display:none}#cfg button{background:var(--card);color:var(--fg);border:1px solid var(--bd)}#cfg button.on{background:var(--ac);color:var(--bg);border-color:var(--ac)}#rl .row{flex-wrap:nowrap}#rl .row>button{flex:0 0 auto;padding:6px 12px;min-height:38px}#toast button{pointer-events:auto;background:none;color:inherit;text-decoration:underline;padding:0 0 0 10px;min-height:0;font-weight:700}#toast.act{pointer-events:auto}
+#mode{display:flex;gap:6px;margin:0 0 6px}#mode button{flex:1;background:var(--card);color:var(--fg);border:1px solid var(--bd)}#mode button.on{background:var(--ac);color:var(--bg);border-color:var(--ac)}
+#toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 10px);transform:translate(-50%,-150%);z-index:50;background:var(--ac);color:var(--bg);padding:10px 16px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.35);font-weight:600;max-width:calc(100% - 24px);text-align:center;transition:transform .25s;pointer-events:none}#toast.on{transform:translate(-50%,0)}
+</style></head><body>
+<div id="toast" role="status" aria-live="polite"></div>
+<div class="row" style="flex-wrap:nowrap"><h1>Níquel en alimentos</h1><button id="cog" class="x" aria-label="Opciones">⚙</button></div>
+<div id="cfg" class="card" hidden><button id="dmb">Quitar alimentos</button><p class="note" id="dmn" style="margin:0" hidden>Busca o elige una categoría y toca «Quitar» en cada alimento que no quieras ver.</p><button id="rsb">Restaurar alimentos</button><div id="rl" hidden></div></div>
+<p class="note">Valores en µg por 100 g que combinan la tabla del Nickel Institute (NiPERA, 2023) y el informe de la EFSA (2020, unas 48.000 muestras europeas, Annex C). El valor medio es el más alto entre los promedios de cada fuente; el de la EFSA es de límite superior (supone que lo no detectado vale el límite de detección), así que tiende a sobrestimar. El rango junta todas las fuentes: mínimo más bajo y máximo más alto (EFSA: percentil 25 a 95). Algunos alimentos tienen además valores puntuales de otras fuentes (USDA en porotos secos, INNIBEL, Rebelytics o un estudio coreano) que también amplían el rango. Son estimaciones con mucho margen de error: úsalos como guía, no como medida exacta, y consulta a su médico.</p>
+<div id="list"><div id="bar"><div id="mode"><button data-m="min">Bajo</button><button data-m="m" class="on">Medio</button><button data-m="max">Alto</button></div>
+<input id="q" type="search" placeholder="Buscar alimento: tomate, palta, arroz…" autocomplete="off">
+<div id="cats"></div></div><div id="res"></div>
+<div id="tools"><button id="addb">+ Agregar alimento</button></div>
+<div id="form" class="card" hidden><b>Alimento nuevo</b>
+<input id="fn" placeholder="Nombre (ej. Palta hass)" autocomplete="off"><select id="fc"></select>
+<div class="row"><label class="note">µg / 100 g<input id="fv" type="number" min="0" step="any" inputmode="decimal"></label><label class="note">Mínimo<input id="fmin" type="number" min="0" step="any" inputmode="decimal"></label><label class="note">Máximo<input id="fmax" type="number" min="0" step="any" inputmode="decimal"></label></div>
+<p class="note" style="margin:0">Mínimo y máximo son opcionales: si solo tienes un número, déjalo en el primer casillero.</p>
+<div class="row"><button class="x" id="fcancel">Cancelar</button><button id="fsave">Guardar</button></div></div></div>
+<h2>Mi día</h2>
+<div class="card">
+<div class="row"><label>Límite diario (µg) <input id="lim" class="g" type="number" min="0" value="250"></label><button class="x" id="clr">Vaciar día</button></div>
+<p class="note">250 µg es una referencia común, no un valor validado para todos. Ajústalo con su médico.</p>
+<div class="bar"><i id="fill" style="width:0"></i></div>
+<div class="row"><b id="tot">0 µg</b><span id="pct" class="note"></span></div>
+<div id="log"></div></div>
+<p class="note">Fuentes: Nickel Institute (NiPERA) Fact Sheet 6 Annex I, dic. 2023; EFSA CONTAM 2020, doi:10.2903/j.efsa.2020.6268, Annex C Table C.6; USDA FoodData Central, Foundation Foods (abr. 2026), porotos secos. Los alimentos “crudos” o “secos” se miden tal como se venden, no cocidos. Nivel por 100 g: bajo &lt;10 µg, medio 10–50, alto &gt;50.</p>
+<script>
+const RAW=`#Bebidas
+Agua de la llave|375|0|1.9|0.4
+Café con leche|250|1|9.5|3.6
+Té (infusión)|375|9.4|77.6|25.1
+Té verde|250|28|63|48.5
+Vino|188|0|18.8|6.4
+Cerveza|333|0|23|4.4
+Bebida gaseosa|375|0|67.5|9.4
+Leche con chocolate|250|1|50|15
+Bebida de soya|250|1|130|55
+Bebida de avena|250|10|50|35
+Agua de coco|375|0|170|25
+#Cereales
+Pan blanco|75|1|20|5
+Pan integral|75|1|50|15
+Pan multigrano|75|1|110|15
+Arroz blanco cocido|140|1|60|5
+Arroz integral cocido|140|1|30|15
+Fideos de trigo|140|0|20|5
+Pasta integral cocida|215|0|30|15
+Quinoa cocida|140|0|30|15
+Avena cocida|194|10|190|75
+Cebada cocida|140|1|30|5
+Mijo|194|70|100|105
+Trigo sarraceno|140|30|220|155
+Granola / muesli|55|1|130|55
+Cereal en hojuelas|55|15.8|149|60
+#Lácteos, huevos y tofu
+Mantequilla|10|0|10|0.8
+Queso (mozzarella, ricotta, etc.)|30|0|5|1.4
+Queso gouda|30|0.3|7.4|3.8
+Queso feta|30|2.2|11.1|4.9
+Crema|15|0|1.5|0.3
+Huevo|100|0.5|8.8|2.5
+Leche de vaca|250|0|20|4.8
+Yogur natural|175|0|5|1.8
+Helado de leche|129|0|12.9|2
+Tofu|85|10|370|105
+#Grasas y aceites
+Aceite de coco|10|0|1|0.4
+Margarina|10|0|0.4|0.1
+Aceite de girasol|10|0.3|2|1.5
+Aceite de canola|10|0|10|1.1
+Mantequilla de maní|15|10.4|112|26.6
+Manteca de cerdo|10|0|3.2|3.2
+#Pescados y mariscos
+Atún|100|0|17|5.6
+Merluza / bacalao|100|0|9.8|4.4
+Caballa|100|0|7.1|2.5
+Camarones cocidos|100|0|50|5
+Ostras cocidas|100|0|24|8
+Mejillones cocidos|100|1|470|55
+Almejas|100|24|155|66.1
+Berberechos|100|110|941|559
+Langosta|100|0|50|9
+Pescado enlatado|55|0|20|5
+Lenguado|100|14|64|39
+Pez espada|100|0|20|7.9
+#Frutas
+Manzana|140|0|35|4.6
+Plátano|140|0|28|7.8
+Arándanos|80|1|12|4.5
+Uvas|140|0|28|4.6
+Kiwi|140|0|17|6.1
+Limón|55|0|3.9|1.5
+Mandarina|140|1.7|36|8.5
+Mango|140|0|34|6.7
+Melón|150|1.7|11|6.9
+Naranja|140|1.7|10|5.6
+Durazno|140|0|34|11.3
+Ciruela|140|1.3|18|6.4
+Frutilla|140|1.5|14|5.6
+Sandía|150|3.6|14|6.3
+Palta (muy variable)|140|18|96|44.2
+Pomelo|140|2|35|14.1
+Piña|140|0|148|26.5
+Frambuesas|80|4.2|24|9.3
+Moras|80|2.2|35|11
+Granada|80|0|16|8.8
+Dátiles|140|9.5|48|16.8
+Pasas|40|2.9|10|5
+Ciruela pasa|40|2.1|29|6
+Higos secos|40|34.4|147|62.6
+Orejones|40|8|35.6|19.7
+Coco fresco|140|30|190|105
+Aceitunas|15|0.6|3|1.8
+#Condimentos y cacao
+Cacao en polvo|5|20|90|55
+Sal|1|0|4|0.48
+Pimienta|0.5|0.6|2.9|1.3
+Albahaca fresca|1.5|0.14|6.4|2
+Orégano seco|0.5|0|5|5
+Ajo|4|0|10|0.5
+Ketchup|15|0|10|5
+Salsa de soya|15|0|40|5
+Mayonesa|15|0|1.1|0.4
+Mostaza|5|0.72|1.7|1.2
+Perejil|1.5|0.09|1.7|0.6
+Jengibre|1.5|0.19|2.6|0.68
+Vinagre de manzana|15|0|2.7|1.5
+Canela|0.5|0.07|0.4|0.17
+Cúrcuma|0.5|0.3|0.45|0.37
+Pimentón (polvo)|0.5|0.5|2.6|1.2
+#Jugos
+Jugo de manzana|250|0|25|5.8
+Jugo de naranja|250|0|10|5
+Jugo de tomate|250|10|25.3|15.3
+Jugo de zanahoria|250|9|21.8|13.5
+Jugo de uva|250|0|25|8.3
+Jugo de ciruela|250|20|80|35
+#Carnes
+Pollo|100|0|12|8.1
+Pavo|100|0|6|2.4
+Cerdo|100|0|12.7|8.9
+Vacuno|100|0|30.3|10.4
+Cordero|100|0|36.6|6.6
+Ternera|100|0|5|2
+Jamón|55|0.9|3.5|1.7
+Tocino|15|0|7.5|0.6
+Salchicha cocida|55|0|10.6|4.2
+Carne molida cocida|100|0|310|15
+#Frutos secos y semillas
+Almendras|30|21.3|59.4|30.9
+Castañas de Brasil|30|107|183|124
+Castañas de cajú|30|152|202|168
+Castañas|30|3|2250|171
+Linaza|30|30|70|55
+Avellanas|30|35.9|115|71.5
+Maní|30|17.8|341|96.5
+Pistachos|30|12.2|52.2|28.5
+Semillas de amapola|30|0|42|23.4
+Semillas de zapallo|30|32.7|77.4|47.4
+Sésamo|30|21.5|49.5|28
+Semillas de girasol|30|42.6|193|84.5
+Nueces|30|21.6|138.7|72.3
+#Dulces
+Azúcar blanca|4|0|0.6|0.25
+Miel|20|0|10|5.2
+Chocolate amargo|40|97|240|131
+Chocolate con leche|40|22|36.4|25.4
+Chocolate blanco|15|0|20|5
+Jarabe de arce|60|0|60|30
+Mermelada|15|0|20|5
+Melaza|20|9.5|15.8|9.9
+Caramelos|40|0|30|5
+#Verduras
+Berenjena|85|0|5.2|1.5
+Betarraga|85|0|23.8|8.4
+Repollo|85|0|14.5|4.8
+Zanahoria|85|0|8.2|2.7
+Coliflor|85|0.77|6.8|2.7
+Pepino|85|0|6|1.8
+Lechuga|85|0|12.8|4.3
+Champiñones|85|0|6.7|2.5
+Pimentón / ají|85|0.3|15.3|6.2
+Papa cocida|167|3|6.8|5.4
+Papas fritas|70|0|4.2|2.8
+Camote cocido|167|0|60|15
+Choclo|85|1.4|35|8
+Rábano|85|0|17|2.9
+Nabo|85|0|36.6|4.1
+Alcachofa|85|7.9|111|30.9
+Espárragos|85|3.5|34|11.6
+Brócoli|85|2.9|37.4|14.7
+Apio|85|3.8|26.4|8.5
+Kale|85|1.7|425|28.1
+Cebolla|85|0.77|57.8|15.9
+Espinaca|85|0|38.3|11.1
+Tomate|85|0|26.6|8.8
+Zapallo cocido|130|1|20|15
+Papas fritas (bolsa)|50|5.2|60|15.6
+#Legumbres y algas
+Porotos / frijoles|80|69.4|804|231
+Lentejas|80|58.7|296|151
+Arvejas|85|46.9|354|120
+Algas|15|4|93.7|30.7`;
+let cat="";const CATS=[];
+const EX={"Porotos / frijoles":[["USDA, pinto seco (base seca)",186],["USDA, negro seco (base seca)",193],["USDA, navy seco (base seca)",220],["USDA, great northern seco (base seca)",181],["USDA, rojo oscuro seco (base seca)",79]],"Frutilla":[["Rebelytics",3.6]],"Tofu":[["EFSA (Europa)",38.4],["Estudio coreano",37]],"Mejillones cocidos":[["INNIBEL (Bélgica)",7],["EFSA (Europa)",23.7]],"Ciruela":[["Rebelytics",17.9]],"Moras":[["Rebelytics",18.8]],"Higos secos":[["Rebelytics",112.5]],"Jugo de tomate":[["Rebelytics",6]],"Jugo de uva":[["Rebelytics",2]],"Lentejas":[["Rebelytics (cocidas)",81.3]],"Camote cocido":[["EFSA (Europa)",11.5]],"Almendras":[["Estudio coreano",84]],"Maní":[["Estudio coreano",64]],"Cacao en polvo":[["Estudio coreano",156]],"Chocolate con leche":[["Estudio coreano (chocolate)",110]]};
+let cc="";const F=[];RAW.split("\n").forEach(l=>{if(l[0]==="#"){cc=l.slice(1);CATS.push(cc);return}const [n,g,a,b,m]=l.split("|").map((v,i)=>i?+v:v),k=100/g;const ex=EX[n]||[],ev=ex.map(e=>e[1]);F.push({n,c:cc,min:Math.min(a*k,...ev),max:Math.max(b*k,...ev),m:m*k,ex})});
+const EFM={"Tomate":[11.0,0.0,31.3,204],"Berenjena":[2.3,0.0,6.1,94],"Betarraga":[10.3,0.0,28.0,101],"Repollo":[5.7,0.0,17.1,168],"Zanahoria":[12.3,2.2,57.0,497],"Coliflor":[3.4,0.9,8.0,68],"Pepino":[2.5,0.0,7.0,140],"Lechuga":[5.6,0.0,15.0,154],"Champiñones":[3.4,0.0,7.9,758],"Pimentón / ají":[7.7,0.3,18.0,169],"Rábano":[5.0,0.0,20.0,114],"Nabo":[8.6,0.0,43.0,13],"Choclo":[9.9,1.6,41.0,28],"Brócoli":[17.3,3.4,44.0,129],"Kale":[33.0,2.0,500.0,36],"Espinaca":[13.5,0.0,45.0,100],"Espárragos":[14.4,4.1,40.0,250],"Apio":[10.0,4.5,31.0,8],"Cebolla":[19.4,0.9,68.0,239],"Ajo":[14.8,6.6,53.5,20],"Naranja":[4.4,1.2,7.2,62],"Limón":[3.7,0.0,7.0,56],"Mandarina":[6.7,1.2,26.0,71],"Manzana":[5.0,0.0,25.0,175],"Ciruela":[5.0,0.9,13.0,107],"Durazno":[8.9,0.0,24.0,64],"Uvas":[4.9,0.0,20.0,115],"Frutilla":[4.4,1.1,9.9,256],"Moras":[15.4,2.6,43.9,58],"Frambuesas":[11.7,5.2,30.0,62],"Arándanos":[5.8,1.0,15.0,8],"Dátiles":[12.9,5.8,34.0,24],"Kiwi":[5.2,0.0,12.1,109],"Plátano":[7.0,0.0,20.0,195],"Mango":[6.3,0.0,24.0,18],"Piña":[19.5,0.0,105.8,79],"Pasas":[16.9,0.0,85.0,29],"Higos secos":[118.5,76.7,240.0,22],"Ciruela pasa":[20.1,5.3,73.0,8],"Orejones":[54.1,20.0,89.0,13],"Mermelada":[7.6,3.4,11.5,3],"Vacuno":[11.3,0.0,30.3,335],"Ternera":[3.0,0.0,5.0,16],"Cerdo":[10.3,0.0,12.7,215],"Cordero":[7.4,0.0,36.6,25],"Pollo":[9.0,0.0,12.0,186],"Pavo":[3.5,0.0,6.0,54],"Jamón":[3.1,1.7,6.4,10],"Tocino":[6.8,0.0,50.0,11],"Salchicha cocida":[13.3,0.0,19.2,103],"Atún":[6.0,0.0,17.0,142],"Merluza / bacalao":[4.7,0.0,9.8,24],"Caballa":[4.2,0.0,7.1,65],"Pez espada":[8.9,0.0,20.0,12],"Camarones cocidos":[9.5,0.0,50.0,20],"Ostras cocidas":[4.3,0.0,11.0,26],"Mejillones cocidos":[24.7,9.0,50.0,303],"Almejas":[67.1,24.1,155.0,32],"Leche de vaca":[2.3,0.0,8.1,457],"Mantequilla":[2.2,0.0,5.1,4],"Queso (mozzarella, ricotta, etc.)":[5.9,0.0,17.0,74],"Crema":[3.4,0.0,6.5,11],"Yogur natural":[1.6,0.0,2.9,24],"Huevo":[2.9,0.0,8.8,139],"Tofu":[42.4,0.0,94.3,82],"Bebida de soya":[27.7,15.2,56.5,22],"Aceite de girasol":[17.9,0.0,20.0,389],"Aceite de canola":[17.9,0.0,100.0,290],"Margarina":[47.6,0.0,120.0,185],"Mantequilla de maní":[177.4,69.0,745.0,12],"Manteca de cerdo":[33.0,0.0,33.0,40],"Almendras":[104.6,71.0,198.0,141],"Castañas de Brasil":[413.6,355.0,609.9,89],"Castañas de cajú":[560.2,505.0,674.0,8],"Castañas":[570.5,10.0,7500.0,34],"Avellanas":[204.6,127.9,384.6,13],"Pistachos":[80.1,57.5,147.0,20],"Nueces":[234.9,120.0,463.0,23],"Maní":[323.1,59.4,1135.4,180],"Linaza":[121.0,92.1,190.0,79],"Semillas de amapola":[91.5,0.0,140.0,26],"Sésamo":[93.8,71.7,165.0,205],"Semillas de girasol":[282.3,142.0,643.0,185],"Semillas de zapallo":[158.3,109.0,258.0,199],"Algas":[206.7,26.9,624.9,513],"Té (infusión)":[7.0,2.5,20.7,25],"Cacao en polvo":[952.9,897.0,1224.3,225],"Chocolate amargo":[331.8,240.0,600.0,65],"Chocolate con leche":[63.7,55.0,91.0,57],"Chocolate blanco":[12.0,0.0,82.5,12],"Cerveza":[1.2,0.0,2.8,364],"Vino":[18.9,18.9,18.9,1],"Agua de la llave":[0.2,0.0,0.5,8529],"Bebida gaseosa":[23.9,0.0,185.0,9],"Jugo de manzana":[4.0,0.0,10.0,286],"Jugo de naranja":[2.9,0.0,5.8,215],"Jugo de uva":[3.7,0.0,5.0,11],"Jugo de tomate":[6.1,4.0,10.1,24],"Miel":[27.9,0.0,50.0,45],"Sal":[61.2,0.0,400.0,15],"Pimienta":[266.1,122.5,580.0,184],"Albahaca fresca":[135.1,9.4,425.0,8],"Perejil":[39.7,5.9,115.9,147],"Jengibre":[48.4,12.8,175.0,12],"Salsa de soya":[47.4,16.5,162.2,20],"Vinagre de manzana":[10.2,0.0,18.0,30],"Mayonesa":[1.1,0.0,5.1,21],"Papas fritas (bolsa)":[33.5,10.4,120.2,11],"Cereal en hojuelas":[109.1,28.8,270.0,158],"Granola / muesli":[74.9,38.1,181.6,40],"Avena cocida":[4.7,0.8,14.0,16],"Fideos de trigo":[6.8,3.4,13.5,19],"Pan blanco":[13.5,0.0,41.0,389]};
+const NEWF=[["Pera","Frutas",8.6,2.1,24.5,75],["Damasco","Frutas",9.2,4.2,25.5,153],["Cereza","Frutas",3.2,0.0,10.0,80],["Fruta en conserva","Frutas",8.2,1.7,25.0,73],["Papa (cruda)","Verduras",5.6,2.1,19.0,469],["Camote (crudo)","Verduras",12.0,1.3,26.0,64],["Zapallo (crudo)","Verduras",11.4,3.1,19.0,35],["Zapallo italiano","Verduras",12.3,3.4,31.0,158],["Hongo (chanterelle)","Verduras",12.5,8.7,21.5,226],["Shiitake","Verduras",3.1,0.0,8.3,23],["Puré de tomate","Verduras",20.0,9.7,56.8,28],["Encurtidos","Verduras",157.6,8.4,780.0,16],["Papas fritas (comidas)","Verduras",8.0,5.4,13.2,10],["Porotos verdes (vainitas)","Verduras",27.6,10.4,73.4,119],["Arvejas verdes","Verduras",32.4,18.4,71.0,166],["Porotos secos (crudos)","Legumbres y algas",284.0,101.2,942.0,150],["Lentejas secas (crudas)","Legumbres y algas",247.2,127.0,525.0,4],["Arvejas secas","Legumbres y algas",149.9,105.0,320.0,155],["Garbanzos secos","Legumbres y algas",121.6,57.0,416.3,37],["Soya (poroto seco)","Legumbres y algas",539.8,140.5,1390.0,172],["Harina de soya","Legumbres y algas",556.7,419.5,916.0,36],["Arroz (grano crudo)","Cereales",36.7,15.1,85.5,737],["Trigo (grano)","Cereales",21.5,8.0,56.0,1144],["Avena (grano)","Cereales",98.4,54.0,270.0,78],["Trigo sarraceno (grano)","Cereales",120.5,81.0,253.0,174],["Mijo (grano)","Cereales",186.3,137.5,295.0,56],["Maíz (grano)","Cereales",22.3,10.0,50.0,77],["Harina de trigo","Cereales",17.0,0.0,68.0,512],["Avena molida / copos","Cereales",141.9,90.0,256.3,39],["Harina de centeno","Cereales",10.5,0.0,26.3,211],["Harina de maíz","Cereales",15.8,5.1,40.8,124],["Pasta de trigo (cruda)","Cereales",14.5,0.0,30.0,61],["Pasta integral (cruda)","Cereales",29.6,22.0,70.5,17],["Cereal inflado","Cereales",41.0,8.8,103.0,55],["Galletas","Cereales",46.4,9.8,89.6,33],["Pato","Carnes",6.1,0.0,15.0,20],["Conejo","Carnes",1.9,0.0,5.0,22],["Ciervo (venado)","Carnes",32.2,0.0,122.7,173],["Jabalí","Carnes",20.4,0.0,47.4,130],["Hígado de vacuno","Carnes",11.3,0.0,31.0,191],["Hígado de cerdo","Carnes",14.0,0.0,50.0,176],["Hígado de pollo","Carnes",3.3,0.0,5.0,25],["Riñón de cerdo","Carnes",22.4,0.0,50.0,86],["Salchicha fresca","Carnes",128.0,0.0,135.3,25],["Salmón y trucha","Pescados y mariscos",6.6,0.0,50.0,52],["Arenque","Pescados y mariscos",5.4,0.0,10.0,42],["Sardina","Pescados y mariscos",14.9,0.0,50.0,34],["Merluza","Pescados y mariscos",6.4,0.0,9.5,22],["Calamar","Pescados y mariscos",9.1,0.0,35.0,19],["Pulpo","Pescados y mariscos",4.4,0.0,11.0,21],["Ostión / vieira","Pescados y mariscos",10.3,0.0,50.0,22],["Crustáceos (general)","Pescados y mariscos",9.2,0.0,42.0,101],["Lisa","Pescados y mariscos",17.2,0.0,110.0,26],["Bebida de arroz","Lácteos, huevos y tofu",5.1,0.6,12.0,10],["Leche en polvo","Lácteos, huevos y tofu",9.0,0.0,10.0,23],["Aceite de oliva","Grasas y aceites",6.6,0.0,50.0,48],["Aceite de maíz","Grasas y aceites",5.9,0.0,6.0,80],["Aceite de soya","Grasas y aceites",6.0,0.0,6.0,69],["Aceite de palma","Grasas y aceites",12.3,0.0,27.0,63],["Piñones","Frutos secos y semillas",205.9,153.0,360.0,89],["Semillas de cáñamo","Frutos secos y semillas",260.4,100.0,800.0,12],["Té (hojas secas)","Bebidas",445.8,319.0,850.4,170],["Café molido (seco)","Bebidas",152.3,42.2,426.8,49],["Agua embotellada","Bebidas",0.8,0.0,0.8,1034],["Sidra","Bebidas",5.4,0.0,13.0,238],["Jugo de piña","Jugos",7.8,3.3,16.0,42],["Jugo de pera","Jugos",6.7,5.5,11.6,13],["Jugo de pomelo","Jugos",3.7,0.0,5.0,11],["Chocolate de cobertura","Dulces",265.9,190.0,450.0,14],["Azúcar de caña","Dulces",5.9,0.0,12.4,34],["Pimentón (polvo)","Condimentos y cacao",241.8,99.0,513.0,122],["Ají en polvo","Condimentos y cacao",148.9,82.0,379.0,9],["Romero","Condimentos y cacao",20.2,3.1,84.0,16],["Eneldo","Condimentos y cacao",8.5,4.7,19.0,15],["Cebollín","Condimentos y cacao",10.8,2.3,37.0,33],["Mezclas de especias","Condimentos y cacao",196.2,84.0,530.0,37],["Salsa","Condimentos y cacao",8.2,5.4,15.5,11],["Sopas listas","Platos y snacks",65.7,4.6,271.0,10],["Platos con arroz","Platos y snacks",9.9,4.1,17.4,52],["Pretzels","Platos y snacks",9.9,0.0,17.0,51],["Helados y postres","Platos y snacks",26.8,0.0,90.0,22],["Flan / crema pastelera","Platos y snacks",13.1,0.0,63.0,11],["Fórmula infantil (polvo)","Suplementos e infantiles",9.1,0.0,21.0,87],["Cereal infantil (seco)","Suplementos e infantiles",47.5,0.0,133.0,143],["Suplementos minerales","Suplementos e infantiles",409.7,0.0,2220.0,51],["Suplementos dietarios","Suplementos e infantiles",185.5,24.0,610.0,113],["Proteína deportiva","Suplementos e infantiles",51.1,0.0,68.0,29],["Espirulina / chlorella","Suplementos e infantiles",82.6,33.0,216.1,39]];
+F.forEach(f=>{f.np=f.m;const e=EFM[f.n];if(e){f.ex=f.ex.filter(x=>!x[0].startsWith("EFSA"));f.ef=e;f.min=Math.min(f.min,e[1]);f.max=Math.max(f.max,e[2]);f.m=Math.max(f.m,e[0])}f.m=Math.max(f.m,...f.ex.map(x=>x[1]))});
+NEWF.forEach(([n,c,m,a,b,k])=>{if(!CATS.includes(c))CATS.push(c);F.push({n,c,min:a,max:b,m,np:null,ex:[],ef:[m,a,b,k]})});
+const src=f=>`<div class="note">`+[f.np!=null?`NiPERA: ${fx(f.np)}`:"",f.ef?`EFSA (n=${f.ef[3]}): ${fx(f.ef[0])}`:"",...f.ex.map(e=>`${e[0]}: ${fx(e[1])}`)].filter(Boolean).join(" · ")+` <i>(promedios por 100 g; el número grande es el más alto)</i></div>`;
+let mode="m";try{const sm=localStorage.getItem("ni_mode");if(sm)mode=sm}catch(e){}
+const val=f=>f[mode];
+const lvl=v=>v<10?"Bajo":v<=50?"Medio":"Alto";
+const fx=v=>v<10?v.toFixed(1):Math.round(v);
+const norm=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+let log=[];try{log=JSON.parse(localStorage.getItem("ni_log")||"[]")}catch(e){}
+const $=id=>document.getElementById(id);
+try{const l=localStorage.getItem("ni_lim");if(l)$("lim").value=l}catch(e){}
+const save=()=>{try{localStorage.setItem("ni_log",JSON.stringify(log));localStorage.setItem("ni_lim",$("lim").value)}catch(e){}};
+const esc=x=>String(x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let hid=[],cus=[];try{hid=JSON.parse(localStorage.getItem("ni_hide")||"[]");cus=JSON.parse(localStorage.getItem("ni_custom")||"[]")}catch(e){}
+cus.forEach(c=>F.push({n:c.n,c:c.c,min:c.min,m:c.m,max:c.max,np:null,ex:[],custom:1,x:c.x}));
+const gone=f=>f.custom?f.x:hid.includes(f.n);
+const saveX=()=>{try{localStorage.setItem("ni_hide",JSON.stringify(hid));localStorage.setItem("ni_custom",JSON.stringify(F.filter(f=>f.custom).map(f=>({n:f.n,c:f.c,min:f.min,m:f.m,max:f.max,x:f.x?1:0}))))}catch(e){}};
+function hide(i){const f=F[i];if(f.custom)f.x=1;else hid.push(f.n);saveX();show();toast("Quitado: "+f.n,()=>{if(f.custom)f.x=0;else hid=hid.filter(n=>n!==f.n);saveX();show()})}
+let dm=false,rlo=false;
+function tools(){const g=F.filter(gone);$("rsb").textContent="Restaurar alimentos"+(g.length?" ("+g.length+")":"");$("rl").hidden=!rlo;if(rlo)$("rl").innerHTML=g.length?`<div class="row"><b>Quitados</b><button class="x" onclick="unhide()">Restaurar todos</button></div>`+g.map(f=>`<div class="row"><span>${esc(f.n)} <span class="note">· ${esc(f.c)}</span></span><button onclick="unhide(${F.indexOf(f)})">Restaurar</button></div>`).join(""):`<p class="note">No hay alimentos quitados.</p>`}
+function unhide(i){const l=i==null?F.filter(gone):[F[i]];l.forEach(f=>{if(f.custom)f.x=0;else hid=hid.filter(n=>n!==f.n)});saveX();show();toast(i==null?"Alimentos restaurados":"Restaurado: "+F[i].n)}
+$("cog").onclick=()=>{const c=$("cfg");c.hidden=!c.hidden;if(c.hidden){dm=false;rlo=false;$("dmb").classList.remove("on");$("dmb").textContent="Quitar alimentos";$("dmn").hidden=true;show()}else tools()};
+$("dmb").onclick=()=>{dm=!dm;$("dmb").classList.toggle("on",dm);$("dmb").textContent=dm?"✓ Listo, dejar de quitar":"Quitar alimentos";$("dmn").hidden=!dm;show()};
+$("rsb").onclick=()=>{rlo=!rlo;tools()};
+function openForm(pre){const sel=$("fc");if(!sel.options.length)sel.innerHTML=CATS.map(c=>`<option>${esc(c)}</option>`).join("");if(cat)sel.value=cat;if(pre===true)$("fn").value=$("q").value.trim();$("form").hidden=false;$("fn").focus();$("form").scrollIntoView({block:"center",behavior:"smooth"})}
+$("addb").onclick=()=>openForm(false);
+$("fcancel").onclick=()=>{$("form").hidden=true};
+$("fsave").onclick=()=>{const n=$("fn").value.trim(),v=$("fv").value;if(!n||v===""||+v<0){toast("Falta el nombre o el valor");return}
+if(F.some(f=>norm(f.n)===norm(n))){toast("Ya existe en la lista (revisa «Restaurar quitados»)");return}
+const m=+v,lo=$("fmin").value,hi=$("fmax").value,min=lo===""?m:Math.min(+lo,m),max=hi===""?m:Math.max(+hi,m);
+F.push({n,c:$("fc").value,min,m,max,np:null,ex:[],custom:1,x:0});saveX();
+["fn","fv","fmin","fmax"].forEach(k=>$(k).value="");$("form").hidden=true;cat="";[...$("cats").children].forEach((b,j)=>b.classList.toggle("on",j===0));$("q").value=n;show();window.scrollTo({top:$("list").offsetTop,behavior:"smooth"});toast("✓ "+n+" agregado a la lista")};
+function show(){const t=norm($("q").value.trim());const r=F.filter(f=>(!cat||f.c===cat)&&(!t||norm(f.n).includes(t))&&!gone(f));
+$("res").innerHTML=!t&&!cat?"":r.length?r.map((f,i)=>`<div class="card"><div class="row hd"><b>${esc(f.n)}</b><span><span class="chip ${lvl(val(f))}">${lvl(val(f))}</span>${dm?`<button class="rm" onclick="hide(${F.indexOf(f)})">Quitar</button>`:""}</span></div>
+<div class="row act"><span class="calc"><input class="g" type="number" min="1" value="100" id="g${F.indexOf(f)}"><span class="note">g =</span><span id="r${F.indexOf(f)}" class="big"></span></span><button onclick="add(${F.indexOf(f)})">Agregar</button></div>
+<div class="note">rango combinado ${fx(f.min)}–${fx(f.max)} µg / 100 g</div></div>`).join(""):`<p class="note">Sin resultados. Esta base no incluye todos los alimentos.</p><button onclick="openForm(true)">+ Agregar «${esc($("q").value.trim())}»</button>`;
+r.forEach(f=>{const i=F.indexOf(f),g=$("g"+i),o=()=>$("r"+i).textContent=`${fx(val(f)*g.value/100)} µg`;g.oninput=o;o()});tools()}
+function add(i){const g=+$("g"+i).value||0;if(g>0){const v=val(F[i]);log.push({i,g,v,md:mode});save();draw();toast(`✓ ${F[i].n} · ${g} g agregado (≈ ${fx(v*g/100)} µg)`)}}
+let tt;function toast(m,undo){const t=$("toast");t.textContent=m;if(undo){const u=document.createElement("button");u.textContent="Deshacer";u.onclick=()=>{undo();t.classList.remove("on","act")};t.appendChild(u)}t.classList.toggle("act",!!undo);t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on","act"),undo?5000:2200)}
+function draw(){let t=0,mx=0;$("log").innerHTML=log.map((e,k)=>{const f=F[e.i],u=(e.v??f.m)*e.g/100;t+=u;mx+=f.max*e.g/100;return`<div class="row"><span>${esc(f.n.replace(/\s*\(.*\)$/,""))} · rango ${{min:"bajo",m:"medio",max:"alto"}[e.md||"m"]} · ${e.g}&nbsp;g</span><span>${fx(u)} µg <button class="x" onclick="log.splice(${k},1);save();draw()">✕</button></span></div>`}).join("");
+const L=+$("lim").value||0;$("tot").textContent=fx(t)+" µg estimados";$("fill").style.width=Math.min(100,L?t/L*100:0)+"%";$("fill").style.background=t>L?"var(--hi)":"var(--ac)";
+$("pct").textContent=L?`${Math.round(t/L*100)}% del límite`:""}
+$("cats").innerHTML=["Todas",...CATS].map((c,i)=>`<button data-c="${i?c:""}">${c}</button>`).join("");$("cats").onclick=e=>{const b=e.target.closest("button");if(!b)return;cat=b.dataset.c;[...$("cats").children].forEach(x=>x.classList.toggle("on",x===b));show()};$("cats").children[0].classList.add("on");$("q").oninput=show;[...$("mode").children].forEach(b=>b.classList.toggle("on",b.dataset.m===mode));$("mode").onclick=e=>{const b=e.target.closest("button");if(!b)return;mode=b.dataset.m;try{localStorage.setItem("ni_mode",mode)}catch(x){}[...$("mode").children].forEach(x=>x.classList.toggle("on",x===b));show()};$("lim").oninput=()=>{save();draw()};$("clr").onclick=()=>{log=[];save();draw()};draw();
+</script></body></html>

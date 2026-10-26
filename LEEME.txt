@@ -1,0 +1,14 @@
+COMO OBTENER EL APK (Niquel)
+
+1. Entra a github.com, crea una cuenta si no tienes y crea un repositorio NUEVO
+   (nombre: niquel). Puede ser privado.
+2. Sube TODO el contenido de esta carpeta al repositorio
+   (boton "Add file" > "Upload files"; arrastra las carpetas y archivos).
+   IMPORTANTE: la carpeta oculta ".github" tambien debe subirse.
+3. Ve a la pestana "Actions". Si no empezo solo, elige "Compilar APK" y "Run workflow".
+4. Espera 5 a 10 minutos hasta que aparezca el check verde.
+5. Entra a esa ejecucion, baja hasta "Artifacts" y descarga "Niquel-APK" (un zip con app-debug.apk).
+6. Pasa el APK al celular, abrelo y permite "instalar apps de fuentes desconocidas".
+
+Tu app esta en www/index.html. Si algun dia la cambias, vuelve a subirla y se compila otro APK
+que se instala encima del anterior sin perder los datos.
